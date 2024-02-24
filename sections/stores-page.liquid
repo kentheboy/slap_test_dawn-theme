@@ -6,10 +6,56 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
+  .store-title {
+    text-align: center;
+    font-size: 3rem;
+  }
+  .stores-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  .section-{{ section.id }} .stores-grid {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+  }
+  .store-block {
+    margin-bottom: 20px;
+  }
+  .store {
+    background-color: #fff;
+    text-decoration: none;
+  }
+  .store-header {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .store-title {
+    margin: 0;
+  }
+  .store-thumbnail {
+    margin: 0;
+  }
+  .store-image {
+    width: 100%;
+  }
+  .store-text {
+    margin: 0;
+  }
+
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .section-{{ section.id }} .stores-grid {
+      display: grid;
+      gap: 15px;
+      grid-template-columns: repeat(2, 1fr);
+      justify^content: center;
     }
   }
 {%- endstyle -%}
@@ -23,11 +69,69 @@
   </div>
 </div>
 
+<!-- display single store element -->
+<div class="stores-grid">
+    <div class="store-block">
+      <article class="store">
+        <div class="store-header">
+          <a href="/stores/brooklyn" class="full-unstyled-link">
+            <figure class="store-thumbnail">
+              <img
+                src="brooklyn-store.jpg"
+                alt=""
+                width="720"
+                height="auto"
+                loading="lazy"
+              >
+            </figure>
+            <h3 class="store-title">Brroklyn Store</h3>
+          </a>
+        </div>
+        <div class="store-body">
+          <p class="store-text">ST.Somewhere 1-1 Brooklyn NY</p>
+        </div>
+      </article>
+    </div>
+</div>
+
 {% schema %}
 {
   "name": "店舗一覧",
   "tag": "section",
   "class": "section",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "store_info",
+      "name": "店舗情報",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "store_image",
+          "label": "店舗画像"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Store Name",
+          "label": "店舗名"
+        },
+        {
+          "type": "text",
+          "id": "store_address",
+          "default": "Store Address",
+          "label": "店舗住所"
+        },
+        {
+          "type": "url",
+          "id": "stock_link",
+          "label": "店舗ページURL"
+        }
+      ]
+    }
+  ],
   "settings": [
     {
       "type": "header",
