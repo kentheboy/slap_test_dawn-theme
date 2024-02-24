@@ -2,6 +2,19 @@
   "sections": {
     "main": {
       "type": "stores-page",
+      "blocks": {
+        "store_info_7txKJX": {
+          "type": "store_info",
+          "settings": {
+            "title": "Brooklyn NY",
+            "store_address": "Store Address",
+            "stock_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "store_info_7txKJX"
+      ],
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
