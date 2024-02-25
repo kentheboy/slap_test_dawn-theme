@@ -71,27 +71,39 @@
 
 <!-- display single store element -->
 <div class="stores-grid">
+    {%- for block in section.blocks %}}
     <div class="store-block">
       <article class="store">
         <div class="store-header">
-          <a href="/stores/brooklyn" class="full-unstyled-link">
+          {% if block.settings.store_link %}
+          <a href="{{ block.settings.store_link }}" class="full-unstyled-link">
+          {% endif %}
+            {% if block.settings.store_image %}
             <figure class="store-thumbnail">
               <img
-                src="brooklyn-store.jpg"
-                alt=""
+                src="{{ block.settings.store_image | image_url }}"
+                alt="{{ block.settings.store_image.alt }}"
                 width="720"
                 height="auto"
                 loading="lazy"
               >
             </figure>
-            <h3 class="store-title">Brroklyn Store</h3>
+            {% endif %}
+
+            {% if block.settings.title %}
+            <h3 class="store-title">{{ block.settings.title }}</h3>
+            {% endif %}
+
+          {% if block.settings.store_link %}
           </a>
+          {% endif %}
         </div>
         <div class="store-body">
           <p class="store-text">ST.Somewhere 1-1 Brooklyn NY</p>
         </div>
       </article>
     </div>
+    {% endfor %}
 </div>
 
 {% schema %}
